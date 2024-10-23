@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
 import styled from "styled-components";
+import Donut from "react-spinning-donut";
 
 import useCursor from "../hooks/useCursor";
 import {
@@ -8,40 +9,10 @@ import {
 	InputStyled,
 	MainStyled,
 	InputContainer,
+	HistoryContainer,
+	RowContainer,
 } from "../styles/styles";
-
-const TerminalWrapper = styled.div`
-	background-color: black;
-	color: green;
-	padding: 0 20px;
-	height: 100vh;
-	font-family: monospace;
-	display: flex;
-	flex-direction: column;
-	overflow-y: auto;
-`;
-
-const HistoryContainer = styled.div`
-	flex: 1;
-	padding: 20px 0;
-`;
-
-const TerminalInput = styled.input`
-	background-color: black;
-	color: green;
-	border: none;
-	outline: none;
-	flex: 1;
-	font-family: monospace;
-	/* Custom caret to simulate a thick and blinking cursor */
-	caret-color: green;
-	caret-width: 2px; /* Make the caret thicker */
-
-	/* Blinking effect for the caret */
-	&::selection {
-		animation: blink-caret 1s step-end infinite;
-	}
-`;
+import AsciiArt from "./Name";
 
 const Cli: React.FC = () => {
 	const [input, setInput] = useState<string>("");
@@ -107,6 +78,10 @@ const Cli: React.FC = () => {
 		<>
 			<GlobalStyles />
 			<MainStyled onClick={handleFocusClick} onBlur={handleOnBlur} ref={terminalRef}>
+				<RowContainer>
+					<Donut color="green" />
+					<AsciiArt />
+				</RowContainer>
 				<HistoryContainer>
 					{history.map((entry, index) => (
 						<div key={index}>{entry}</div>

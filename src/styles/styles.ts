@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
 		margin: 0;
 		background: ${Color.background};
 		color: ${Color.front};
-		font-family: VT323, monospace; /* Ensure it's a monospaced font */
+		font-family: VT323, monospace;
         letter-spacing: 0.1em;
         height: 100vh;
         width: 100vw;
@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
         justify-content: flex-start;
         align-items: flex-start;
 	    overflow-y: auto;
+        overflow-x: hidden;
         padding: 0;
 	}
 `;
@@ -42,18 +43,24 @@ const MainStyled = styled.main`
 	align-items: flex-start;
 	width: 100vw;
 	height: 100vh;
-	padding: 1rem;
+	padding: 0 1rem;
 `;
 
 const InputContainer = styled.span`
 	display: flex;
 	align-items: center;
 	width: 90vw;
+	gap: 8px;
 
 	> span {
-		margin-right: 4px;
+		margin-right: 8px;
 	}
 	// background-color: blue;
+`;
+
+const HistoryContainer = styled.div`
+	flex: 1;
+	padding: 20px 0;
 `;
 
 const blink = keyframes`
@@ -80,7 +87,7 @@ const InputMirrorStyled = styled.span<{ cursorPaused: boolean; cursorChar: strin
 	word-break: break-all;
 	white-space: pre-wrap;
 	position: relative;
-	background-color: tan;
+	// background-color: tan;th
 
 	> span:before {
 		${({ cursorChar }) => (cursorChar ? `content: "${cursorChar}"` : `content: ""`)};
@@ -94,4 +101,19 @@ const InputMirrorStyled = styled.span<{ cursorPaused: boolean; cursorChar: strin
 	}
 `;
 
-export { GlobalStyles, MainStyled, InputContainer, InputStyled, InputMirrorStyled };
+const RowContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 20px;
+`;
+
+export {
+	GlobalStyles,
+	MainStyled,
+	InputContainer,
+	InputStyled,
+	InputMirrorStyled,
+	HistoryContainer,
+	RowContainer,
+};
