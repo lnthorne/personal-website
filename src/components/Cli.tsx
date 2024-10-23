@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
-import styled from "styled-components";
 import Donut from "react-spinning-donut";
 
 import useCursor from "../hooks/useCursor";
@@ -11,8 +10,9 @@ import {
 	InputContainer,
 	HistoryContainer,
 	RowContainer,
-} from "../styles/styles";
+} from "../styles/cli.styles";
 import AsciiArt from "./Name";
+import Boot from "./Boot";
 
 const Cli: React.FC = () => {
 	const [input, setInput] = useState<string>("");
@@ -77,6 +77,7 @@ const Cli: React.FC = () => {
 	return (
 		<>
 			<GlobalStyles />
+			<Boot />
 			<MainStyled onClick={handleFocusClick} onBlur={handleOnBlur} ref={terminalRef}>
 				<RowContainer>
 					<Donut color="green" />
