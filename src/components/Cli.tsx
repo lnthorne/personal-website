@@ -1,5 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
 import styled from "styled-components";
+
+import useCursor from "../hooks/useCursor";
+import {
+	GlobalStyles,
+	InputMirrorStyled,
+	InputStyled,
+	MainStyled,
+	InputContainer,
+} from "../styles/styles";
 
 const TerminalWrapper = styled.div`
 	background-color: black;
@@ -17,14 +26,6 @@ const HistoryContainer = styled.div`
 	padding: 20px 0;
 `;
 
-const InputContainer = styled.div`
-	display: flex;
-`;
-
-const Prompt = styled.span`
-	margin-right: 8px;
-`;
-
 const TerminalInput = styled.input`
 	background-color: black;
 	color: green;
@@ -32,6 +33,14 @@ const TerminalInput = styled.input`
 	outline: none;
 	flex: 1;
 	font-family: monospace;
+	/* Custom caret to simulate a thick and blinking cursor */
+	caret-color: green;
+	caret-width: 2px; /* Make the caret thicker */
+
+	/* Blinking effect for the caret */
+	&::selection {
+		animation: blink-caret 1s step-end infinite;
+	}
 `;
 
 const Cli: React.FC = () => {
@@ -42,6 +51,7 @@ const Cli: React.FC = () => {
 
 	const bottomRef = useRef<HTMLDivElement | null>(null);
 	const terminalRef = useRef<HTMLDivElement | null>(null);
+	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const handleCommand = (command: string) => {
 		let response = "";
@@ -55,14 +65,19 @@ const Cli: React.FC = () => {
 			default:
 				response = `Command not found: ${command}`;
 		}
-		setHistory((prev) => [...prev, `> ${command}`, response]);
+		setInput("");
+		setHistory((prev) => [...prev, `guest@portfolio:~$ ${command}`, response]);
 	};
 
-	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === "Enter") {
-			handleCommand(input);
-			setInput(""); // Clear input after processing the command
-		}
+	const { handleOnFocus, handleOnBlur, handleKeyDown, shifts, paused } = useCursor({
+		input,
+		handleCommand,
+	});
+
+	const handleFocusClick = () => {
+		console.log("I have clicked");
+		inputRef.current?.focus();
+		handleOnFocus();
 	};
 
 	useEffect(() => {
@@ -80,25 +95,39 @@ const Cli: React.FC = () => {
 		}
 	}, [history]);
 
+	const cursorPosition = input.length - shifts;
+
+	const [beforeCursor, inCursor, afterCursor] = [
+		input.slice(0, cursorPosition),
+		input.charAt(cursorPosition),
+		input.slice(cursorPosition + 1),
+	];
+
 	return (
-		<TerminalWrapper ref={terminalRef}>
-			<HistoryContainer>
-				{history.map((line, index) => (
-					<div key={index}>{line}</div>
-				))}
-				<InputContainer>
-					<Prompt> {">"} </Prompt>
-					<TerminalInput
-						type="text"
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-						onKeyDown={handleKeyPress}
-						autoFocus
-					/>
-				</InputContainer>
-				<div ref={bottomRef} />
-			</HistoryContainer>
-		</TerminalWrapper>
+		<>
+			<GlobalStyles />
+			<MainStyled onClick={handleFocusClick} onBlur={handleOnBlur} ref={terminalRef}>
+				<HistoryContainer>
+					{history.map((entry, index) => (
+						<div key={index}>{entry}</div>
+					))}
+					<InputContainer>
+						<span>guest@portfolio:~$ </span>
+						<InputMirrorStyled cursorPaused={paused} cursorChar={inCursor}>
+							{beforeCursor}
+							<span>{inCursor}</span>
+							{afterCursor}
+						</InputMirrorStyled>
+						<InputStyled
+							onKeyDown={handleKeyDown}
+							onChange={(e) => setInput(e.target.value)}
+							ref={inputRef}
+						/>
+					</InputContainer>
+					<div ref={bottomRef} />
+				</HistoryContainer>
+			</MainStyled>
+		</>
 	);
 };
 
