@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const BootScreenWrapper = styled.div<{ isVisible: boolean; flicker: boolean }>`
 	display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
@@ -38,4 +38,36 @@ export const ProgressBar = styled.div<{ progress: number }>`
 	color: green;
 	text-align: left;
 	font-family: "Courier New", monospace;
+`;
+
+export const crtFlash = keyframes`
+  0% {
+    opacity: 1;
+    transform: scaleY(0.01);
+  }
+  25% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  75% {
+    opacity: 0;
+    transform: scaleY(1); 
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.01);
+  }
+`;
+
+// Styled component for the CRT Flash
+export const CRTFlashEffect = styled.div<{ isVisible: boolean }>`
+	display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	z-index: 10000; /* Ensure it's on top */
+	animation: ${crtFlash} 0.7s ease-in-out;
 `;

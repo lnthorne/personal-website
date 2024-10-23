@@ -28,7 +28,7 @@ const Cli: React.FC = () => {
 		let response = "";
 		switch (command.toLowerCase()) {
 			case "help":
-				response = "Available commands: help, clear";
+				response = "Available commands: help, clear, whois, portfolio, linkedin";
 				break;
 			case "clear":
 				setHistory([]);
