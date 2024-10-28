@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
 import Donut from "react-spinning-donut";
+import { aboutMe } from "./about";
 
 import useCursor from "../hooks/useCursor";
 import {
@@ -25,19 +26,27 @@ const Cli: React.FC = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const handleCommand = (command: string) => {
-		let response = "";
+		let response: string | string[] = "";
 		switch (command.toLowerCase()) {
 			case "help":
 				response = "Available commands: help, clear, whois, portfolio, linkedin";
 				break;
+			case "about":
+				response = aboutMe.split("\n");
+				break;
 			case "clear":
 				setHistory([]);
+				setInput("");
 				return;
 			default:
 				response = `Command not found: ${command}`;
 		}
+		setHistory((prev) => [
+			...prev,
+			`guest@portfolio:~$ ${command}`,
+			...(Array.isArray(response) ? response : [response]),
+		]);
 		setInput("");
-		setHistory((prev) => [...prev, `guest@portfolio:~$ ${command}`, response]);
 	};
 
 	const { handleOnFocus, handleOnBlur, handleKeyDown, shifts, paused } = useCursor({
@@ -46,7 +55,6 @@ const Cli: React.FC = () => {
 	});
 
 	const handleFocusClick = () => {
-		console.log("I have clicked");
 		inputRef.current?.focus();
 		handleOnFocus();
 	};
@@ -95,8 +103,11 @@ const Cli: React.FC = () => {
 							{afterCursor}
 						</InputMirrorStyled>
 						<InputStyled
+							value={input}
 							onKeyDown={handleKeyDown}
-							onChange={(e) => setInput(e.target.value)}
+							onChange={(e) => {
+								return setInput(e.target.value);
+							}}
 							ref={inputRef}
 						/>
 					</InputContainer>

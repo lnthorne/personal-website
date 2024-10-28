@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 
 interface Props {
 	input: string;
@@ -50,6 +50,7 @@ function useCursor({ input, handleCommand }: Props) {
 				break;
 			case "Enter":
 				handleCommand(input);
+				input = "";
 				break;
 			default:
 				break;
