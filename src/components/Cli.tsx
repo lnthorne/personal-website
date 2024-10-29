@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Donut from "react-spinning-donut";
 import { aboutMe } from "./about";
-
 import useCursor from "../hooks/useCursor";
 import {
 	GlobalStyles,
@@ -20,6 +19,7 @@ const Cli: React.FC = () => {
 	const [history, setHistory] = useState<string[]>([
 		'Welcome to the CLI! Type "help" for commands.',
 	]);
+	const [displayedText, setDisplayedText] = useState<string>("");
 
 	const bottomRef = useRef<HTMLDivElement | null>(null);
 	const terminalRef = useRef<HTMLDivElement | null>(null);
@@ -31,22 +31,31 @@ const Cli: React.FC = () => {
 			case "help":
 				response = "Available commands: help, clear, whois, portfolio, linkedin";
 				break;
-			case "about":
-				response = aboutMe.split("\n");
-				break;
 			case "clear":
 				setHistory([]);
-				setInput("");
+				setDisplayedText("");
 				return;
+			case "about":
+				response = aboutMe;
+				break;
 			default:
 				response = `Command not found: ${command}`;
 		}
-		setHistory((prev) => [
-			...prev,
-			`guest@portfolio:~$ ${command}`,
-			...(Array.isArray(response) ? response : [response]),
-		]);
+
+		setHistory((prev) => [...prev, `guest@portfolio:~$ ${command}`]);
+
+		if (typeof response === "string") {
+			typeText(response);
+		}
 		setInput("");
+	};
+
+	const typeText = async (text: string) => {
+		setDisplayedText("");
+		for (let i = 0; i < text.length; i++) {
+			await new Promise((resolve) => setTimeout(resolve, 10));
+			setDisplayedText((prev) => prev + text[i]);
+		}
 	};
 
 	const { handleOnFocus, handleOnBlur, handleKeyDown, shifts, paused } = useCursor({
@@ -64,18 +73,15 @@ const Cli: React.FC = () => {
 		if (!terminalElement) return;
 
 		const scrollThreshold = 100;
-
 		const { scrollTop, scrollHeight, clientHeight } = terminalElement;
-
 		const isNearBottom = scrollHeight - scrollTop - clientHeight < scrollThreshold;
 
 		if (isNearBottom) {
 			bottomRef.current?.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [history]);
+	}, [history, displayedText]);
 
 	const cursorPosition = input.length - shifts;
-
 	const [beforeCursor, inCursor, afterCursor] = [
 		input.slice(0, cursorPosition),
 		input.charAt(cursorPosition),
@@ -95,6 +101,7 @@ const Cli: React.FC = () => {
 					{history.map((entry, index) => (
 						<div key={index}>{entry}</div>
 					))}
+					<div>{displayedText}</div>
 					<InputContainer>
 						<span>guest@portfolio:~$ </span>
 						<InputMirrorStyled cursorPaused={paused} cursorChar={inCursor}>
@@ -103,11 +110,8 @@ const Cli: React.FC = () => {
 							{afterCursor}
 						</InputMirrorStyled>
 						<InputStyled
-							value={input}
 							onKeyDown={handleKeyDown}
-							onChange={(e) => {
-								return setInput(e.target.value);
-							}}
+							onChange={(e) => setInput(e.target.value)}
 							ref={inputRef}
 						/>
 					</InputContainer>
