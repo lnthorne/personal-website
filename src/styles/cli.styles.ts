@@ -21,6 +21,8 @@ const GlobalStyles = createGlobalStyle`
 	    overflow-y: auto;
         overflow-x: hidden;
         padding: 0;
+		box-sizing: border-box;
+		white-space: pre-wrap;
 	}
 `;
 
@@ -43,7 +45,7 @@ const MainStyled = styled.main`
 	align-items: flex-start;
 	width: 100vw;
 	height: 100vh;
-	padding: 0 1rem;
+	padding-left: 1rem;
 `;
 
 const InputContainer = styled.span`

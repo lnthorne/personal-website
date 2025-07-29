@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Donut from "react-spinning-donut";
-import { aboutMe } from "./about";
+import { aboutMe } from "./Text";
 import useCursor from "../hooks/useCursor";
 import {
 	GlobalStyles,
@@ -25,7 +25,7 @@ const Cli: React.FC = () => {
 	const terminalRef = useRef<HTMLDivElement | null>(null);
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
-	const handleCommand = (command: string) => {
+	const handleCommand = async (command: string) => {
 		let response: string | string[] = "";
 		switch (command.toLowerCase()) {
 			case "help":
@@ -45,7 +45,9 @@ const Cli: React.FC = () => {
 		setHistory((prev) => [...prev, `guest@portfolio:~$ ${command}`]);
 
 		if (typeof response === "string") {
-			typeText(response);
+			await typeText(response);
+			setHistory((prev) => [...prev, ...(Array.isArray(response) ? response : [response])]);
+			setDisplayedText("");
 		}
 		setInput("");
 	};
@@ -53,7 +55,7 @@ const Cli: React.FC = () => {
 	const typeText = async (text: string) => {
 		setDisplayedText("");
 		for (let i = 0; i < text.length; i++) {
-			await new Promise((resolve) => setTimeout(resolve, 10));
+			await new Promise((resolve) => setTimeout(resolve, 1));
 			setDisplayedText((prev) => prev + text[i]);
 		}
 	};
@@ -102,6 +104,7 @@ const Cli: React.FC = () => {
 						<div key={index}>{entry}</div>
 					))}
 					<div>{displayedText}</div>
+
 					<InputContainer>
 						<span>guest@portfolio:~$ </span>
 						<InputMirrorStyled cursorPaused={paused} cursorChar={inCursor}>
@@ -110,6 +113,7 @@ const Cli: React.FC = () => {
 							{afterCursor}
 						</InputMirrorStyled>
 						<InputStyled
+							value={input}
 							onKeyDown={handleKeyDown}
 							onChange={(e) => setInput(e.target.value)}
 							ref={inputRef}

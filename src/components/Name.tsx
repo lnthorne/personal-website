@@ -45,11 +45,22 @@ S:::::::::::::::SS oo:::::::::::oof:::::::f                   tt:::::::::::tt   
                                                                                                                                                                                                                                                                              p:::::::p                                                 
                                                                                                                                                                                                                                                                              ppppppppp                                                 `;
 
-const AsciiArtContainer = styled.div`
-	font-family: VT323, monospace;
+const AsciiArtContainer = styled.pre`
+	font-family: "VT323", monospace;
 	white-space: pre;
 	letter-spacing: 0;
 	line-height: 1.2;
+	margin: 0;
+	/* Ensure crisp scaling */
+	transform-origin: top left;
+
+	@media (max-width: 1080px) {
+		transform: scale(0.7);
+	}
+
+	@media (max-width: 780px) {
+		transform: scale(0.6);
+	}
 `;
 
 const Heading = styled.div`
