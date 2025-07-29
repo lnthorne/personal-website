@@ -4,28 +4,6 @@ const Color = {
 	front: "green",
 	background: "black",
 };
-
-const GlobalStyles = createGlobalStyle`
-	body {
-		margin: 0;
-		background: ${Color.background};
-		color: ${Color.front};
-		font-family: VT323, monospace;
-        letter-spacing: 0.1em;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-	    overflow-y: auto;
-        overflow-x: hidden;
-        padding: 0;
-		box-sizing: border-box;
-		white-space: pre-wrap;
-	}
-`;
-
 const hidde = css`
 	border: 0;
 	clip: rect(1px, 1px, 1px, 1px);
@@ -111,7 +89,6 @@ const RowContainer = styled.div`
 `;
 
 export {
-	GlobalStyles,
 	MainStyled,
 	InputContainer,
 	InputStyled,

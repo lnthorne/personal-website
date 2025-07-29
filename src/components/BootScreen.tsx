@@ -5,9 +5,9 @@ import {
 	CRTFlashEffect,
 	ProgressBar,
 	ProgressBarWrapper,
-} from "../styles/bootWindow.styles";
+} from "../styles/BootScreen.styles";
 
-function Boot() {
+function BootScreen() {
 	const [flashComplete, setFlashComplete] = useState(false);
 	const [progress, setProgress] = useState(0);
 	const [bootComplete, setBootComplete] = useState(false);
@@ -49,4 +49,4 @@ function Boot() {
 	);
 }
 
-export default Boot;
+export default BootScreen;

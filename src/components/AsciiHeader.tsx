@@ -71,7 +71,7 @@ const SubHeading = styled.div`
 	font-size: 4px;
 `;
 
-const AsciiArt: React.FC = () => {
+const AsciiHeader: React.FC = () => {
 	return (
 		<AsciiArtContainer>
 			<Heading>{name}</Heading>
@@ -80,4 +80,4 @@ const AsciiArt: React.FC = () => {
 	);
 };
 
-export default AsciiArt;
+export default AsciiHeader;

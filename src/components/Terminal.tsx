@@ -3,18 +3,17 @@ import Donut from "react-spinning-donut";
 import { aboutMe } from "./Text";
 import useCursor from "../hooks/useCursor";
 import {
-	GlobalStyles,
 	InputMirrorStyled,
 	InputStyled,
 	MainStyled,
 	InputContainer,
 	HistoryContainer,
 	RowContainer,
-} from "../styles/cli.styles";
-import AsciiArt from "./Name";
-import Boot from "./Boot";
+} from "../styles/Terminal.styles";
+import AsciiHeader from "./AsciiHeader";
+import BootScreen from "./BootScreen";
 
-const Cli: React.FC = () => {
+const Terminal: React.FC = () => {
 	const [input, setInput] = useState<string>("");
 	const [history, setHistory] = useState<string[]>([
 		'Welcome to the CLI! Type "help" for commands.',
@@ -33,7 +32,6 @@ const Cli: React.FC = () => {
 				break;
 			case "clear":
 				setHistory([]);
-				setDisplayedText("");
 				return;
 			case "about":
 				response = aboutMe;
@@ -92,12 +90,11 @@ const Cli: React.FC = () => {
 
 	return (
 		<>
-			<GlobalStyles />
-			<Boot />
+			<BootScreen />
 			<MainStyled onClick={handleFocusClick} onBlur={handleOnBlur} ref={terminalRef}>
 				<RowContainer>
 					<Donut color="green" />
-					<AsciiArt />
+					<AsciiHeader />
 				</RowContainer>
 				<HistoryContainer>
 					{history.map((entry, index) => (
@@ -126,4 +123,4 @@ const Cli: React.FC = () => {
 	);
 };
 
-export default Cli;
+export default Terminal;
