@@ -5,7 +5,7 @@ import {
 	CRTFlashEffect,
 	ProgressBar,
 	ProgressBarWrapper,
-} from "../styles/BootScreen.styles";
+} from "./styles";
 
 function BootScreen() {
 	const [flashComplete, setFlashComplete] = useState(false);

@@ -1,13 +1,7 @@
 import type React from "react";
-import {
-	HelpContainer,
-	CommandList,
-	Command,
-	CommandName,
-	CommandDesc,
-} from "../styles/Help.styles";
+import { HelpContainer, CommandList, Command, CommandName, CommandDesc } from "./styles";
 
-const HelpScreen: React.FC = () => {
+const Help: React.FC = () => {
 	return (
 		<HelpContainer>
 			<div>Available Commands:</div>
@@ -44,4 +38,4 @@ const HelpScreen: React.FC = () => {
 	);
 };
 
-export default HelpScreen;
+export default Help;

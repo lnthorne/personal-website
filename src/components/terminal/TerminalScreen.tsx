@@ -10,10 +10,10 @@ import {
 	InputWrapper,
 	Input,
 	Cursor,
-} from "../styles/Terminal.styles";
-import AsciiHeader from "./AsciiHeader";
-import { TerminalEntry, TerminalState } from "../types/terminal/terminal";
-import HelpScreen from "./HelpScreen";
+} from "./styles";
+import AsciiHeader from "../header/AsciiHeader";
+import { TerminalEntry, TerminalState } from "./terminal.types";
+import Help from "../help/Help";
 
 const Terminal: React.FC = () => {
 	const [input, setInput] = useState<string>("");
@@ -100,7 +100,7 @@ const Terminal: React.FC = () => {
 	const getScreenContent = (screenType: string, projectId?: number) => {
 		switch (screenType) {
 			case "help":
-				return <HelpScreen />;
+				return <Help />;
 			case "about":
 			// return <AboutScreen />
 			case "skills":
@@ -256,13 +256,6 @@ const Terminal: React.FC = () => {
 	};
 
 	useEffect(() => {
-		// Reset history index when user types (not navigating with arrows)
-		const handleInputChange = () => {
-			if (commandHistoryIndex !== -1) {
-				setCommandHistoryIndex(-1);
-			}
-		};
-
 		// Only reset if the input was changed by typing, not by arrow navigation
 		const currentCommand = commandHistory[commandHistoryIndex];
 		if (commandHistoryIndex !== -1 && input !== currentCommand) {
