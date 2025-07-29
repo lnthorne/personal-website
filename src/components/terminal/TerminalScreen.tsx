@@ -14,6 +14,11 @@ import {
 import AsciiHeader from "../header/AsciiHeader";
 import { TerminalEntry, TerminalState } from "./terminal.types";
 import Help from "../help/Help";
+import About from "../about/About";
+import Skills from "../skills/Skills";
+import Projects from "../projects/Projects";
+import Contact from "../contact/Contact";
+import ProjectDetail from "../projectDetail/ProjectDetail";
 
 const Terminal: React.FC = () => {
 	const [input, setInput] = useState<string>("");
@@ -102,15 +107,15 @@ const Terminal: React.FC = () => {
 			case "help":
 				return <Help />;
 			case "about":
-			// return <AboutScreen />
+				return <About />;
 			case "skills":
-			// return <SkillsScreen />
+				return <Skills />;
 			case "projects":
-			// return <ProjectsScreen />
+				return <Projects />;
 			case "contact":
-			// return <ContactScreen />;
+				return <Contact />;
 			case "project-detail":
-			// return <ProjectDetail id={projectId!} />
+				return <ProjectDetail id={projectId!} />;
 			default:
 				return null;
 		}
