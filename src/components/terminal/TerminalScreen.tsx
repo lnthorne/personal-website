@@ -35,7 +35,7 @@ const TerminalScreen: React.FC = () => {
 
 	const mobileWidth = 425;
 	const isMobile = useIsMobile(mobileWidth);
-	const placeholder = isMobile ? "Type 'help'" : "Type 'help' to get started...";
+	const placeholder = isMobile ? "Type 'help'" : "Type 'help' to list available commands...";
 
 	useEffect(() => {
 		// Focus immediately on component mount
