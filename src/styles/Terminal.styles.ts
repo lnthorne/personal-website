@@ -1,83 +1,102 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Color = {
-	front: "green",
-	background: "black",
-};
-const hidde = css`
-	border: 0;
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-`;
-
-const MainStyled = styled.main`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	width: 100vw;
+const TerminalContainer = styled.div`
+	width: 100%;
 	height: 100vh;
-	padding-left: 1rem;
+	background: #000;
+	color: #00ff00;
+	font-family: VT323, monospace;
+	position: relative;
+	overflow: hidden;
+	data-terminal: true;
+
+	/* CRT effect */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(transparent 50%, rgba(0, 255, 0, 0.03) 50%);
+		background-size: 100% 4px;
+		pointer-events: none;
+		z-index: 1000;
+	}
+
+	/* Phosphor glow */
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		box-shadow: inset 0 0 100px rgba(0, 255, 0, 0.1);
+		pointer-events: none;
+		z-index: 999;
+	}
 `;
 
 const InputContainer = styled.span`
 	display: flex;
 	align-items: center;
-	width: 90vw;
-	gap: 8px;
-
-	> span {
-		margin-right: 8px;
-	}
-	// background-color: blue;
+	margin-bottom: 16px;
 `;
 
-const HistoryContainer = styled.div`
-	flex: 1;
-	padding: 20px 0;
+const Prompt = styled.span`
+	color: #00ff00;
+	margin-right: 8px;
 `;
 
-const blink = keyframes`
-  0%  { opacity: 1 }
-  49% { opacity: 1 }
-  50% { opacity: 0 }
-  100% { opacity: 0 }
-`;
-
-const animationBlink = css`
-	animation: ${blink} 1s ease infinite;
-`;
-
-const InputStyled = styled.input`
-	${hidde}
-`;
-
-const fontWidth = 7;
-
-const InputMirrorStyled = styled.span<{ cursorPaused: boolean; cursorChar: string }>`
-	display: block;
-	height: 1rem;
-	width: 50vw;
-	word-break: break-all;
-	white-space: pre-wrap;
+const TerminalContent = styled.div`
+	padding: 20px;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
 	position: relative;
-	// background-color: tan;th
+	z-index: 1;
 
-	> span:before {
-		${({ cursorChar }) => (cursorChar ? `content: "${cursorChar}"` : `content: ""`)};
-		position: absolute;
-		color: ${Color.background};
-		background: ${Color.front};
-		height: 1rem;
-		width: ${fontWidth}px;
-		display: inline-block;
-		${({ cursorPaused }) => !cursorPaused && animationBlink}
+	/* Custom scrollbar */
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #000;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #00ff00;
+		border-radius: 4px;
+	}
+`;
+
+const TerminalLine = styled.div`
+	margin-bottom: 16px;
+	white-space: pre-wrap;
+	line-height: 1.4;
+`;
+
+const InputWrapper = styled.div`
+	position: relative;
+	flex: 1;
+	display: flex;
+	align-items: center;
+`;
+
+const Input = styled.input`
+	background: transparent;
+	border: none;
+	color: #00ff00;
+	font-family: VT323, monospace;
+	font-size: 16px;
+	outline: none;
+	flex: 1;
+	caret-color: transparent; /* Hide the default cursor */
+
+	&::placeholder {
+		color: #006600;
 	}
 `;
 
@@ -88,11 +107,26 @@ const RowContainer = styled.div`
 	gap: 20px;
 `;
 
+const blink = keyframes`
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+  `;
+
+const Cursor = styled.span`
+	animation: ${blink} 1s infinite;
+	position: absolute;
+	left: 2px;
+	pointer-events: none;
+`;
+
 export {
-	MainStyled,
+	TerminalContainer,
 	InputContainer,
-	InputStyled,
-	InputMirrorStyled,
-	HistoryContainer,
+	TerminalContent,
 	RowContainer,
+	TerminalLine,
+	Prompt,
+	InputWrapper,
+	Input,
+	Cursor,
 };

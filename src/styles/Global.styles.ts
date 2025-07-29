@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Courier New', monospace;
+    font-family: VT323, monospace;
     background: #000;
     color: #00ff00;
     overflow: hidden;
@@ -34,4 +34,4 @@ export const GlobalStyles = createGlobalStyle`
     -ms-user-select: text;
     user-select: text;
   }
-`
+`;

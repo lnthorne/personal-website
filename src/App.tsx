@@ -2,6 +2,7 @@ import React from "react";
 import Terminal from "./components/Terminal";
 import { styled } from "styled-components";
 import { GlobalStyles } from "./styles/Global.styles";
+import BootScreen from "./components/BootScreen";
 
 const AppContainer = styled.div`
 	width: 100vw;
@@ -13,6 +14,7 @@ function App() {
 	return (
 		<AppContainer>
 			<GlobalStyles />
+			<BootScreen />
 			<Terminal />
 		</AppContainer>
 	);
