@@ -6,7 +6,6 @@ export const AsciiArtContainer = styled.pre`
 	letter-spacing: 0;
 	line-height: 1.2;
 	margin: 0;
-	/* Ensure crisp scaling */
 	transform-origin: top left;
 
 	@media (max-width: 1080px) {
@@ -16,10 +15,18 @@ export const AsciiArtContainer = styled.pre`
 	@media (max-width: 780px) {
 		transform: scale(0.6);
 	}
+
+	@media (max-width: 425px) {
+		transform: scale(0.45);
+	}
 `;
 
 export const Heading = styled.div`
 	font-size: 8.2px;
+
+	@media (max-width: 425px) {
+		font-size: 6.2px;
+	}
 `;
 
 export const SubHeading = styled.div`

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import Donut from "react-spinning-donut";
 import {
 	InputContainer,
 	RowContainer,
@@ -19,6 +18,8 @@ import Skills from "../skills/Skills";
 import Projects from "../projects/Projects";
 import Contact from "../contact/Contact";
 import ProjectDetail from "../projectDetail/ProjectDetail";
+import SpinningDonut from "../spinningDonut/SpinningDonut";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const Terminal: React.FC = () => {
 	const [input, setInput] = useState<string>("");
@@ -31,6 +32,10 @@ const Terminal: React.FC = () => {
 
 	const terminalContentRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
+
+	const mobileWidth = 425;
+	const isMobile = useIsMobile(mobileWidth);
+	const placeholder = isMobile ? "Type 'help'" : "Type 'help' to get started...";
 
 	useEffect(() => {
 		// Focus immediately on component mount
@@ -272,7 +277,7 @@ const Terminal: React.FC = () => {
 		<TerminalContainer data-terminal="true" onClick={() => inputRef.current?.focus()}>
 			<TerminalContent ref={terminalContentRef}>
 				<RowContainer>
-					<Donut color="green" />
+					<SpinningDonut />
 					<AsciiHeader />
 				</RowContainer>
 				{state.entries.map((entry) => (
@@ -288,7 +293,7 @@ const Terminal: React.FC = () => {
 							value={input}
 							onChange={(e) => setInput(e.target.value)}
 							onKeyDown={handleKeyDown}
-							placeholder="Type 'help' to get started..."
+							placeholder={placeholder}
 						/>
 						{input.length === 0 && <Cursor>_</Cursor>}
 					</InputWrapper>
