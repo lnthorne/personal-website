@@ -1,4 +1,4 @@
-import styled, { css, keyframes, createGlobalStyle } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const Color = {
 	front: "green",
