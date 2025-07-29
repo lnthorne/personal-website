@@ -21,7 +21,7 @@ import ProjectDetail from "../projectDetail/ProjectDetail";
 import SpinningDonut from "../spinningDonut/SpinningDonut";
 import { useIsMobile } from "../../hooks/useIsMobile";
 
-const Terminal: React.FC = () => {
+const TerminalScreen: React.FC = () => {
 	const [input, setInput] = useState<string>("");
 	const [state, setState] = useState<TerminalState>({
 		currentScreen: "welcome",
@@ -303,4 +303,4 @@ const Terminal: React.FC = () => {
 	);
 };
 
-export default Terminal;
+export default TerminalScreen;

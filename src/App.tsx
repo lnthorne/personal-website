@@ -1,5 +1,5 @@
 import React from "react";
-import Terminal from "./components/terminal/TerminalScreen";
+import TerminalScreen from "./components/terminal/TerminalScreen";
 import { styled } from "styled-components";
 import { GlobalStyles } from "./styles/Global.styles";
 import BootScreen from "./components/boot/BootScreen";
@@ -15,7 +15,7 @@ function App() {
 		<AppContainer>
 			<GlobalStyles />
 			<BootScreen />
-			<Terminal />
+			<TerminalScreen />
 		</AppContainer>
 	);
 }
