@@ -5,7 +5,7 @@ const TerminalContainer = styled.div`
 	height: 100vh;
 	background: #000;
 	color: #00ff00;
-	font-family: VT323, monospace;
+	font-family: "IBM Plex Mono", monospace;
 	position: relative;
 	overflow: hidden;
 	data-terminal: true;
@@ -89,7 +89,7 @@ const Input = styled.input`
 	background: transparent;
 	border: none;
 	color: #00ff00;
-	font-family: VT323, monospace;
+	font-family: "IBM Plex Mono", monospace;
 	font-size: 16px;
 	outline: none;
 	flex: 1;

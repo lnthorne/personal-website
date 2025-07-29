@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: VT323, monospace;
+    font-family: 'IBM Plex Mono', monospace;
     background: #000;
     color: #00ff00;
     overflow: hidden;

@@ -16,7 +16,7 @@ export const BootScreenWrapper = styled.div<{ isVisible: boolean; flicker: boole
 export const BootWindow = styled.div`
 	background-color: black;
 	color: green;
-	font-family: "VT323", monospace;
+	font-family: "IBM Plex Mono", monospace;
 	border: 2px solid green;
 	padding: 20px;
 	width: 300px;
@@ -37,7 +37,7 @@ export const ProgressBar = styled.div<{ progress: number }>`
 	width: 100%;
 	color: green;
 	text-align: left;
-	font-family: "VT323", monospace;
+	font-family: "IBM Plex Mono", monospace;
 `;
 
 export const crtFlash = keyframes`

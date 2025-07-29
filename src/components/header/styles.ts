@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const AsciiArtContainer = styled.pre`
-	font-family: "VT323", monospace;
+	font-family: "IBM Plex Mono", monospace;
 	white-space: pre;
 	letter-spacing: 0;
 	line-height: 1.2;
