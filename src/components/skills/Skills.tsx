@@ -1,12 +1,5 @@
 import type React from "react";
-import {
-	SkillsContainer,
-	SkillCategory,
-	CategoryTitle,
-	SkillList,
-	Skill,
-	SkillLevel,
-} from "./styles";
+import { SkillsContainer, SkillCategory, CategoryTitle, SkillList, Skill } from "./styles";
 
 const Skills: React.FC = () => {
 	return (
@@ -14,82 +7,64 @@ const Skills: React.FC = () => {
 			<SkillCategory>
 				<CategoryTitle>Frontend Technologies</CategoryTitle>
 				<SkillList>
-					<Skill>
-						React.js / Next.js <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						TypeScript / JavaScript <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						Vue.js / Nuxt.js <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						HTML5 / CSS3 / SASS <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						Tailwind CSS / Styled Components <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						Three.js / WebGL <SkillLevel level="intermediate">[Intermediate]</SkillLevel>
-					</Skill>
+					<Skill>React.js / Next.js</Skill>
+					<Skill>React Native</Skill>
+					<Skill>TypeScript / JavaScript</Skill>
+					<Skill>HTML5 / CSS3 / SASS</Skill>
+					<Skill>Tailwind CSS / Styled Components</Skill>
+					<Skill>Three.js / WebGL</Skill>
 				</SkillList>
 			</SkillCategory>
 
 			<SkillCategory>
 				<CategoryTitle>Backend & Database</CategoryTitle>
 				<SkillList>
-					<Skill>
-						Node.js / Express.js <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						Python / Django / FastAPI <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						PostgreSQL / MongoDB <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						Redis / ElasticSearch <SkillLevel level="intermediate">[Intermediate]</SkillLevel>
-					</Skill>
-					<Skill>
-						GraphQL / REST APIs <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
+					<Skill>Node.js / Express.js</Skill>
+					<Skill>C# / .NET</Skill>
+					<Skill>C++</Skill>
+					<Skill>Python / Django </Skill>
+					<Skill>PostgreSQL / MongoDB / Redis</Skill>
+					<Skill>GraphQL / REST APIs</Skill>
+				</SkillList>
+			</SkillCategory>
+
+			<SkillCategory>
+				<CategoryTitle>Messaging & Streaming</CategoryTitle>
+				<SkillList>
+					<Skill>Kafka</Skill>
+					<Skill>RabbitMQ</Skill>
+					<Skill>Amazon SQS</Skill>
+					<Skill>Amazon SNS</Skill>
 				</SkillList>
 			</SkillCategory>
 
 			<SkillCategory>
 				<CategoryTitle>Cloud & DevOps</CategoryTitle>
 				<SkillList>
-					<Skill>
-						AWS / Google Cloud <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						Docker / Kubernetes <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						CI/CD Pipelines <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						Terraform / Infrastructure as Code{" "}
-						<SkillLevel level="intermediate">[Intermediate]</SkillLevel>
-					</Skill>
+					<Skill>AWS / Google Cloud</Skill>
+					<Skill>Docker / Kubernetes</Skill>
+					<Skill>CI/CD Pipelines</Skill>
+					<Skill>Terraform / Infrastructure as Code</Skill>
+				</SkillList>
+			</SkillCategory>
+
+			<SkillCategory>
+				<CategoryTitle>Observability</CategoryTitle>
+				<SkillList>
+					<Skill>Metrics (Prometheus / Grafana)</Skill>
+					<Skill>APM & Tracing (Datadog)</Skill>
+					<Skill>Logging pipelines</Skill>
+					<Skill>Alerting & SLOs</Skill>
 				</SkillList>
 			</SkillCategory>
 
 			<SkillCategory>
 				<CategoryTitle>Tools & Workflow</CategoryTitle>
 				<SkillList>
-					<Skill>
-						Git / GitHub Actions <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						VS Code / Vim <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
-					<Skill>
-						Figma / Adobe Creative Suite <SkillLevel level="advanced">[Advanced]</SkillLevel>
-					</Skill>
-					<Skill>
-						Linux / Terminal <SkillLevel level="expert">[Expert]</SkillLevel>
-					</Skill>
+					<Skill>Git / GitHub Actions</Skill>
+					<Skill>VS Code / Rider</Skill>
+					<Skill>Figma / Adobe Creative Suite</Skill>
+					<Skill>Linux / Terminal</Skill>
 				</SkillList>
 			</SkillCategory>
 		</SkillsContainer>

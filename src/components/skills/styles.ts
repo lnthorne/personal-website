@@ -28,20 +28,3 @@ export const Skill = styled.div`
 		color: #00ff00;
 	}
 `;
-
-export const SkillLevel = styled.span<{ level: "expert" | "advanced" | "intermediate" }>`
-	margin-left: 8px;
-	color: ${(props) => {
-		switch (props.level) {
-			case "expert":
-				return "#00ff00";
-			case "advanced":
-				return "#ffff00";
-			case "intermediate":
-				return "#ff8800";
-			default:
-				return "#00cc00";
-		}
-	}};
-	font-size: 12px;
-`;
