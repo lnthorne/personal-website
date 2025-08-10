@@ -1,21 +1,5 @@
 import type React from "react";
-import styled from "styled-components";
-
-const AboutContainer = styled.div`
-	margin: 20px 0;
-	line-height: 1.8;
-`;
-
-const Section = styled.div`
-	margin-bottom: 20px;
-`;
-
-const SectionTitle = styled.div`
-	color: #00ff00;
-	font-weight: bold;
-	margin-bottom: 8px;
-	text-decoration: underline;
-`;
+import { AboutContainer, Section, SectionTitle } from "./styles";
 
 const About: React.FC = () => {
 	return (
@@ -23,40 +7,35 @@ const About: React.FC = () => {
 			<Section>
 				<SectionTitle>$ whoami</SectionTitle>
 				<div>
-					Hello! I'm Liam Thorne, a passionate full-stack developer and creative technologist with
-					over 5 years of experience building innovative web applications and digital experiences.
+					{`Hey, I'm Liam Thorne -> backend dev. One year out of SFU (’24). I build APIs and services that don’t fall over.`}
 				</div>
 			</Section>
 
 			<Section>
 				<SectionTitle>$ cat background.txt</SectionTitle>
 				<div>
-					I specialize in modern JavaScript frameworks, cloud architecture, and creating seamless
-					user experiences. My journey began with a Computer Science degree, but my real education
-					came from countless hours of coding, experimenting, and pushing the boundaries of what's
-					possible on the web.
+					Day to day it’s backend APIs, queues, data, and not just plumbing: turning fuzzy problems
+					into simple, reliable systems. I like small, readable services, clear boundaries, and logs
+					that actually help at 3 a.m. Most of what I know came from shipping, breaking things, and
+					fixing them better. Goal: useful, fast, predictable, and cheap to run.
 				</div>
 			</Section>
 
 			<Section>
 				<SectionTitle>$ ls interests/</SectionTitle>
 				<div>
-					• Web3 and blockchain technologies
-					<br />• AI/ML integration in web applications
-					<br />• Creative coding and generative art
-					<br />• Open source contributions
-					<br />• Terminal-based interfaces (obviously!)
+					• Event-driven stuff (Kafka) & async jobs
+					<br />• Data modeling & query tuning in Postgres
+					<br />• Caching and making things fast (without burning $$$)
+					<br />• Observability: logs, traces, metrics that tell the truth
+					<br />• Self-hosting in my home lab (Docker/K8s, NAS, monitoring)
 					<br />• Coffee brewing optimization algorithms
 				</div>
 			</Section>
 
 			<Section>
 				<SectionTitle>$ echo $PHILOSOPHY</SectionTitle>
-				<div>
-					"Code is poetry written in logic. Every function should tell a story, every interface
-					should feel intuitive, and every project should leave the world a little bit better than
-					before."
-				</div>
+				<div>Ship small, measure, repeat. Make prod boring. Future-me shouldn’t hate past-me.</div>
 			</Section>
 		</AboutContainer>
 	);
