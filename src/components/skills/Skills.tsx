@@ -57,16 +57,6 @@ const Skills: React.FC = () => {
 					<Skill>Alerting & SLOs</Skill>
 				</SkillList>
 			</SkillCategory>
-
-			<SkillCategory>
-				<CategoryTitle>Tools & Workflow</CategoryTitle>
-				<SkillList>
-					<Skill>Git / GitHub Actions</Skill>
-					<Skill>VS Code / Rider</Skill>
-					<Skill>Figma / Adobe Creative Suite</Skill>
-					<Skill>Linux / Terminal</Skill>
-				</SkillList>
-			</SkillCategory>
 		</SkillsContainer>
 	);
 };
