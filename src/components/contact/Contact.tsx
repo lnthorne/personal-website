@@ -38,7 +38,7 @@ const Contact: React.FC = () => {
 			</ContactMethod>
 
 			<MessageSection>
-				<SectionTitle>Contact</SectionTitle>
+				<SectionTitle>Drop a Line</SectionTitle>
 				<div>
 					Always down to chat new projects, weird ideas, or just nerding out about 3D printers. If
 					you need a hand shipping something real, message me.
