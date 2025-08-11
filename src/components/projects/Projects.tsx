@@ -19,37 +19,44 @@ const Projects: React.FC = () => {
 				<Project>
 					<ProjectTitle>
 						<ProjectNumber>[1]</ProjectNumber>
-						EcoTrack - Sustainability Dashboard
+						Spade - Home Services Platform
 					</ProjectTitle>
 					<ProjectDesc>
-						A comprehensive web application that helps companies track and visualize their
-						environmental impact with real-time analytics and AI-powered insights.
+						A two-sided marketplace for home services. Homeowners post jobs with photos and
+						timelines; companies bid, chat in-app, and get hired. Reviews and progress updates keep
+						everything transparent from post to completion.
 					</ProjectDesc>
-					<ProjectTech>Tech Stack: React, Node.js, PostgreSQL, D3.js, AWS</ProjectTech>
+					<ProjectTech>
+						Stack: React Native, Node.js, PostgreSQL, Redis, Kubernetes, Kafka, Prometheus
+					</ProjectTech>
 				</Project>
 
 				<Project>
 					<ProjectTitle>
 						<ProjectNumber>[2]</ProjectNumber>
-						Neural Canvas - AI Art Generator
+						HHA CBR - Community-Based Rehabilitation
 					</ProjectTitle>
 					<ProjectDesc>
-						An interactive platform that combines machine learning with creative coding to generate
-						unique digital artworks based on user inputs and preferences.
+						A mobile-first system for community health teams in Ugandan refugee settlements. It
+						tracks patients, visits, and care plans; manages medical inventory and equipment; and
+						works offline with seamless sync when connectivity returns. Built for field use with
+						fast search and role-based access, and deployed with Hope Health Action’s CBR program.
 					</ProjectDesc>
-					<ProjectTech>Tech Stack: Next.js, Python, TensorFlow, Three.js, MongoDB</ProjectTech>
+					<ProjectTech>Stack: React Native, Python, Django, PostgreSQL, WatermelonDB</ProjectTech>
 				</Project>
 
 				<Project>
 					<ProjectTitle>
 						<ProjectNumber>[3]</ProjectNumber>
-						DevFlow - Developer Productivity Suite
+						WoaLocative - AR Without Maps
 					</ProjectTitle>
 					<ProjectDesc>
-						A terminal-based productivity tool that integrates with popular development workflows,
-						featuring custom commands, project templates, and automation scripts.
+						A Center for Digital Media × UBC CeDAR research prototype exploring a mapless AR
+						interface. Instead of a basemap and pins, geospatial anchors attach visual cues and
+						context directly to places—inviting people to relate to land, space, and environment
+						without assuming today’s boundaries were inevitable.
 					</ProjectDesc>
-					<ProjectTech>Tech Stack: Node.js, TypeScript, CLI frameworks, Git APIs</ProjectTech>
+					<ProjectTech>Stack: Unity, ARCore, Google Geospatial</ProjectTech>
 				</Project>
 			</ProjectList>
 
