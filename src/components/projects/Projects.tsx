@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
 
 			<Instruction>
 				Type "open [number]" to view detailed information about a project. Example: "open 1" to view
-				EcoTrack details.
+				Spade details.
 			</Instruction>
 		</ProjectsContainer>
 	);
