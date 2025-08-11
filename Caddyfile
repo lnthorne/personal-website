@@ -1,0 +1,10 @@
+{$DOMAIN} {
+  root * /usr/share/caddy
+  encode gzip zstd
+  file_server
+
+  @immutable {
+    path *.js *.css *.png *.jpg *.svg *.ico *.woff *.woff2
+  }
+  header @immutable Cache-Control "public, max-age=31536000, immutable"
+}
