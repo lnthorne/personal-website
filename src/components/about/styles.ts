@@ -15,3 +15,10 @@ export const SectionTitle = styled.div`
 	margin-bottom: 8px;
 	text-decoration: underline;
 `;
+
+export const Interest = styled.div`
+	&::before {
+		content: "> ";
+		color: #00ff00;
+	}
+`;

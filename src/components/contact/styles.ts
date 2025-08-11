@@ -35,8 +35,11 @@ export const ContactLink = styled.a`
 	}
 `;
 
-export const ContactValue = styled.span`
-	color: #00cc00;
+export const Available = styled.div`
+	&::before {
+		content: "> ";
+		color: #00ff00;
+	}
 `;
 
 export const MessageSection = styled.div`

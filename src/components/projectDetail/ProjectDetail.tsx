@@ -6,9 +6,9 @@ import {
 	ProjectSubtitle,
 	Section,
 	SectionTitle,
-	FeatureList,
 	LinkSection,
 	Link,
+	Feature,
 } from "./styles";
 
 interface ProjectDetailProps {
@@ -100,11 +100,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ id }) => {
 
 			<Section>
 				<SectionTitle>Key Features</SectionTitle>
-				<FeatureList>
+				<div>
 					{project.features.map((feature, index) => (
-						<li key={index}>{feature}</li>
+						<Feature key={index}>{feature}</Feature>
 					))}
-				</FeatureList>
+				</div>
 			</Section>
 
 			<Section>

@@ -31,15 +31,10 @@ export const SectionTitle = styled.h3`
 	text-decoration: underline;
 `;
 
-export const FeatureList = styled.ul`
-	margin-left: 20px;
-
-	li {
-		margin: 4px 0;
-
-		&::marker {
-			color: #00ff00;
-		}
+export const Feature = styled.div`
+	&::before {
+		content: "> ";
+		color: #00ff00;
 	}
 `;
 

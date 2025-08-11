@@ -1,5 +1,5 @@
 import type React from "react";
-import { AboutContainer, Section, SectionTitle } from "./styles";
+import { AboutContainer, Interest, Section, SectionTitle } from "./styles";
 
 const About: React.FC = () => {
 	return (
@@ -24,12 +24,13 @@ const About: React.FC = () => {
 			<Section>
 				<SectionTitle>$ ls interests/</SectionTitle>
 				<div>
-					• Event-driven stuff (Kafka) & async jobs
-					<br />• Data modeling & query tuning in Postgres
-					<br />• Caching and making things fast (without burning $$$)
-					<br />• Observability: logs, traces, metrics that tell the truth
-					<br />• Self-hosting in my home lab (Docker/K8s, NAS, monitoring)
-					<br />• Coffee brewing optimization algorithms
+					<Interest>Event-driven stuff (Kafka) & async jobs</Interest>
+					<Interest>Data modeling & query tuning in Postgres</Interest>
+					<Interest>Caching and making things fast (without burning $$$)</Interest>
+					<Interest>Observability: logs, traces, metrics that tell the truth</Interest>
+					<Interest>Self-hosting (K8s, NAS, Networking, Monitoring)</Interest>
+					<Interest>3D Printing</Interest>
+					<Interest>Coffee brewing optimization algorithms</Interest>
 				</div>
 			</Section>
 
