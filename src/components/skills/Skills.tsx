@@ -19,10 +19,10 @@ const Skills: React.FC = () => {
 			<SkillCategory>
 				<CategoryTitle>Backend & Database</CategoryTitle>
 				<SkillList>
-					<Skill>Node.js / Express.js</Skill>
+					<Skill>Typescript / Node.js</Skill>
 					<Skill>C# / .NET</Skill>
-					<Skill>C++</Skill>
 					<Skill>Python / Django </Skill>
+					<Skill>C++</Skill>
 					<Skill>PostgreSQL / MongoDB / Redis</Skill>
 					<Skill>GraphQL / REST APIs</Skill>
 				</SkillList>
@@ -44,7 +44,7 @@ const Skills: React.FC = () => {
 					<Skill>AWS / Google Cloud</Skill>
 					<Skill>Docker / Kubernetes</Skill>
 					<Skill>CI/CD Pipelines</Skill>
-					<Skill>Terraform / Infrastructure as Code</Skill>
+					<Skill>Terraform</Skill>
 				</SkillList>
 			</SkillCategory>
 

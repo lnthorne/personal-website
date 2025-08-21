@@ -7,16 +7,16 @@ const About: React.FC = () => {
 			<Section>
 				<SectionTitle>$ whoami</SectionTitle>
 				<div>
-					{`Hey, I'm Liam Thorne -> backend dev. One year out of SFU (’24). I build APIs and services that don’t fall over.`}
+					{`Hey, I'm Liam Thorne -> software dev. One year out of SFU (’24). I build software that doesn't fall over.`}
 				</div>
 			</Section>
 
 			<Section>
 				<SectionTitle>$ cat background.txt</SectionTitle>
 				<div>
-					Day to day it’s backend APIs, queues, data, and not just plumbing: turning fuzzy problems
-					into simple, reliable systems. I like small, readable services, clear boundaries, and logs
-					that actually help at 3 a.m. Most of what I know came from shipping, breaking things, and
+					Day to day I turn fuzzy problems into simple, dependable solutions across web, mobile, and
+					backend services. I like small, readable services, clear boundaries, and logs that
+					actually help at 3 a.m. Most of what I know came from shipping, breaking things, and
 					fixing them better. Goal: useful, fast, predictable, and cheap to run.
 				</div>
 			</Section>
