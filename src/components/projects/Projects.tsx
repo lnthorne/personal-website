@@ -23,8 +23,10 @@ const Projects: React.FC = () => {
 					</ProjectTitle>
 					<ProjectDesc>
 						A two-sided marketplace for home services. Homeowners post jobs with photos and
-						timelines; companies bid, chat in-app, and get hired. Reviews and progress updates keep
-						everything transparent from post to completion.
+						timelines; companies bid, chat in-app, and get hired. Project Planner—our in-house
+						agent harness—helps homeowners refine a scope, create renderings, and publish a
+						ready-to-bid job. Reviews and progress updates keep everything transparent from
+						post to completion.
 					</ProjectDesc>
 					<ProjectTech>
 						Stack: React Native, Node.js, PostgreSQL, Redis, Kubernetes, Kafka, Prometheus

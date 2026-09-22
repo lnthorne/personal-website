@@ -21,9 +21,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ id }) => {
 			title: "Spade — Home Services Platform",
 			subtitle: "Marketplace for Home Services",
 			overview:
-				"Spade connects homeowners with service providers. Post a job with photos and details, get competitive bids, chat in-app, pick a provider, and track progress end-to-end with reviews at completion.",
+				"Spade connects homeowners with service providers. Post a job with photos and details, get competitive bids, chat in-app, pick a provider, and track progress end-to-end with reviews at completion. Project Planner is an in-house agent harness that helps homeowners refine their project scope, create renderings, and turn the finished plan into a ready-to-post job.",
 			features: [
 				"Job posting with photos, scope, budget, and timelines",
+				"Project Planner agent workflow for scoping projects, creating renderings, and posting finished job briefs",
 				"Competitive bidding with profiles, past work, and ratings",
 				"In-app messaging with image sharing and push notifications",
 				"Job tracking from open → in progress → closed",
@@ -31,9 +32,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ id }) => {
 				"Search & filters by service type, date, and location",
 			],
 			technical:
-				"React Native app for iOS/Android. Backend microservices in Node.js/TypeScript on Kubernetes with PostgreSQL. Event pipeline with Kafka for bids/notifications/audit. Real-time chat, email and push notifications. Image uploads to object storage, geocoding for locations, and observability with Prometheus/Grafana. Redis used for caching",
+				"React Native app for iOS/Android. Backend microservices in Node.js/TypeScript on Kubernetes with PostgreSQL. Event pipeline with Kafka for bids/notifications/audit. Project Planner runs on a custom agent harness: Redis eventing coordinates multi-step work, server-sent events stream planning and rendering progress to the homeowner, and custom tools help the agent refine scope, create renderings, and prepare the job post. Real-time chat, email and push notifications. Image uploads to object storage, geocoding for locations, and observability with Prometheus/Grafana. Redis is also used for caching.",
 			challenges:
-				"Balancing real-time features (chat, bids, notifications) with cost and reliability. Solved with an event-driven pipeline (Kafka), debounced geocoding and server-side validation, and tighter caching/metrics to keep the app responsive while spend stays predictable.",
+				"Balancing real-time features (chat, bids, notifications) with cost and reliability. Project Planner added the challenge of coordinating long-running, multi-step agent work while keeping homeowners informed. Redis-backed events and SSE stream incremental progress, while custom tools and server-side validation keep scopes, renderings, and job-post data structured and dependable.",
 			demo: "https://www.spadeservices.app",
 		},
 		2: {
