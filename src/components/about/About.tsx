@@ -7,7 +7,7 @@ const About: React.FC = () => {
 			<Section>
 				<SectionTitle>$ whoami</SectionTitle>
 				<div>
-					{`Hey, I'm Liam Thorne -> software dev. One year out of SFU (’24). I build software that doesn't fall over.`}
+					{`Hey, I'm Liam Thorne -> software dev. Graduated from SFU (’24). I build software that doesn't fall over.`}
 				</div>
 			</Section>
 

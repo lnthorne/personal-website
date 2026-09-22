@@ -19,6 +19,10 @@ const Help: React.FC = () => {
 					<CommandDesc>Browse my portfolio projects</CommandDesc>
 				</Command>
 				<Command>
+					<CommandName>blogs</CommandName>
+					<CommandDesc>Read notes on building products and software</CommandDesc>
+				</Command>
+				<Command>
 					<CommandName>contact</CommandName>
 					<CommandDesc>Get in touch with me</CommandDesc>
 				</Command>
@@ -32,7 +36,7 @@ const Help: React.FC = () => {
 				</Command>
 			</CommandList>
 			<div style={{ marginTop: "20px", color: "#006600" }}>
-				Tip: In the projects section, use "open 1", "open 2", etc. to view project details.
+				Tip: After opening projects or blogs, use "open 1", "open 2", etc. to view an item.
 			</div>
 		</HelpContainer>
 	);

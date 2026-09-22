@@ -1,6 +1,7 @@
 {$DOMAIN} {
   root * /usr/share/caddy
   encode gzip zstd
+  try_files {path} /index.html
   file_server
 
   @immutable {

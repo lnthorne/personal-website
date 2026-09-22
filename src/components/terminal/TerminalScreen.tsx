@@ -16,8 +16,10 @@ import Help from "../help/Help";
 import About from "../about/About";
 import Skills from "../skills/Skills";
 import Projects from "../projects/Projects";
+import Blogs from "../blogs/Blogs";
 import Contact from "../contact/Contact";
 import ProjectDetail from "../projectDetail/ProjectDetail";
+import { blogPosts } from "../blogs/blogData";
 import SpinningDonut from "../spinningDonut/SpinningDonut";
 import { useIsMobile } from "../../hooks/useIsMobile";
 
@@ -29,6 +31,7 @@ const TerminalScreen: React.FC = () => {
 	});
 	const [commandHistoryIndex, setCommandHistoryIndex] = useState(-1);
 	const [commandHistory, setCommandHistory] = useState<string[]>([]);
+	const [openCollection, setOpenCollection] = useState<"projects" | "blogs">("projects");
 
 	const terminalContentRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -107,7 +110,7 @@ const TerminalScreen: React.FC = () => {
 		}
 	}, [state.entries]);
 
-	const getScreenContent = (screenType: string, projectId?: number) => {
+	const getScreenContent = (screenType: string, itemId?: number) => {
 		switch (screenType) {
 			case "help":
 				return <Help />;
@@ -117,10 +120,12 @@ const TerminalScreen: React.FC = () => {
 				return <Skills />;
 			case "projects":
 				return <Projects />;
+			case "blogs":
+				return <Blogs />;
 			case "contact":
 				return <Contact />;
 			case "project-detail":
-				return <ProjectDetail id={projectId!} />;
+				return <ProjectDetail id={itemId!} />;
 			default:
 				return null;
 		}
@@ -144,24 +149,45 @@ const TerminalScreen: React.FC = () => {
 			return;
 		}
 
-		// Handle project detail commands
-		if (trimmedCommand.startsWith("open ")) {
-			const projectId = Number.parseInt(trimmedCommand.split(" ")[1]);
-			if (projectId >= 1 && projectId <= 3) {
+		const openMatch = trimmedCommand.match(/^open\s+(\d+)$/);
+		if (openMatch) {
+			const itemId = Number.parseInt(openMatch[1], 10);
+			const isBlog = openCollection === "blogs";
+			const isValidItem = isBlog ? blogPosts.some((post) => post.id === itemId) : itemId >= 1 && itemId <= 3;
+			const itemLabel = isBlog ? "post" : "project";
+
+			if (isBlog && isValidItem) {
+				const post = blogPosts.find((blogPost) => blogPost.id === itemId);
+				if (post) {
+					window.open(`${process.env.PUBLIC_URL}/blogs/${post.slug}`, "_blank", "noopener,noreferrer");
+					const outputEntry: TerminalEntry = {
+						type: "output",
+						content: `Opening "${post.title}" in a new tab.`,
+						id: `output-${Date.now()}`,
+					};
+					setState((prev) => ({
+						...prev,
+						entries: [...prev.entries, commandEntry, outputEntry],
+					}));
+				}
+				return;
+			}
+
+			if (isValidItem) {
 				const screenEntry: TerminalEntry = {
 					type: "screen",
-					content: getScreenContent("project-detail", projectId),
+					content: getScreenContent("project-detail", itemId),
 					id: `screen-${Date.now()}`,
 				};
 				setState((prev) => ({
 					currentScreen: "project-detail",
-					projectId,
+					projectId: itemId,
 					entries: [...prev.entries, commandEntry, screenEntry],
 				}));
 			} else {
 				const errorEntry: TerminalEntry = {
 					type: "output",
-					content: "Invalid project number. Use: open 1, open 2, or open 3",
+					content: `Invalid ${itemLabel} number. Use "${isBlog ? "blogs" : "projects"}" to see available items.`,
 					id: `error-${Date.now()}`,
 				};
 				setState((prev) => ({
@@ -191,12 +217,19 @@ const TerminalScreen: React.FC = () => {
 			case "projects":
 				newScreen = "projects";
 				screenContent = getScreenContent("projects");
+				setOpenCollection("projects");
+				break;
+			case "blogs":
+				newScreen = "blogs";
+				screenContent = getScreenContent("blogs");
+				setOpenCollection("blogs");
 				break;
 			case "contact":
 				newScreen = "contact";
 				screenContent = getScreenContent("contact");
 				break;
 			case "clear":
+				setOpenCollection("projects");
 				setState({
 					currentScreen: "welcome",
 					entries: [],
