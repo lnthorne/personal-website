@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import { getBlogPostBySlug } from "./blogData";
 import {
 	BlogPage,
@@ -13,12 +13,26 @@ import {
 	MarkdownContent,
 	StatusMessage,
 } from "./styles";
+import VideoModal from "./VideoModal";
 
 interface BlogDetailProps {
 	slug?: string;
 }
 
 type ContentStatus = "loading" | "ready" | "error";
+
+const sanitizeSchema = {
+	...defaultSchema,
+	tagNames: [...(defaultSchema.tagNames ?? []), "video", "source"],
+	attributes: {
+		...defaultSchema.attributes,
+		div: [...(defaultSchema.attributes?.div ?? []), "style"],
+		span: [...(defaultSchema.attributes?.span ?? []), "style"],
+		img: [...(defaultSchema.attributes?.img ?? []), "width", "height", "style"],
+		video: ["src", "width", "height", "controls", "autoPlay", "autoplay", "loop", "muted", "playsInline", "playsinline", "preload", "poster", "style"],
+		source: ["src", "type"],
+	},
+};
 
 const BlogDetail = ({ slug }: BlogDetailProps) => {
 	const post = getBlogPostBySlug(slug);
@@ -87,7 +101,19 @@ const BlogDetail = ({ slug }: BlogDetailProps) => {
 				)}
 				{status === "ready" && (
 					<MarkdownContent>
-						<ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{markdown}</ReactMarkdown>
+						<ReactMarkdown
+							rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
+							components={{
+								a: ({ node, children, ...props }) => (
+									<a {...props} target="_blank" rel="noopener noreferrer">
+										{children}
+									</a>
+								),
+								video: (props) => <VideoModal {...props} />,
+							}}
+						>
+							{markdown}
+						</ReactMarkdown>
 					</MarkdownContent>
 				)}
 

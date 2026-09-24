@@ -41,7 +41,7 @@ const Skills: React.FC = () => {
 			<SkillCategory>
 				<CategoryTitle>Cloud & DevOps</CategoryTitle>
 				<SkillList>
-					<Skill>AWS / Google Cloud</Skill>
+					<Skill>AWS / GCP / Digital Ocean</Skill>
 					<Skill>Docker / Kubernetes</Skill>
 					<Skill>CI/CD Pipelines</Skill>
 					<Skill>Terraform</Skill>
@@ -49,13 +49,11 @@ const Skills: React.FC = () => {
 			</SkillCategory>
 
 			<SkillCategory>
-				<CategoryTitle>Observability</CategoryTitle>
-				<SkillList>
-					<Skill>Metrics (Prometheus / Grafana)</Skill>
-					<Skill>APM & Tracing (Datadog)</Skill>
-					<Skill>Logging pipelines</Skill>
-					<Skill>Alerting & SLOs</Skill>
-				</SkillList>
+				<CategoryTitle>Production Reliability</CategoryTitle>
+				<Skill>Service health, SLIs & SLOs</Skill>
+				<Skill>Metrics, logs & distributed tracing</Skill>
+				<Skill>Grafana Stack & Datadog</Skill>
+				<Skill>Alert design, incident triage & debugging</Skill>
 			</SkillCategory>
 		</SkillsContainer>
 	);

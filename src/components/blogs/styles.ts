@@ -165,6 +165,14 @@ export const MarkdownContent = styled.div`
     margin: 20px 0;
   }
 
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 4px;
+  }
+
   code {
     padding: 2px 5px;
     border-radius: 3px;
