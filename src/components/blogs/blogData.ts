@@ -10,6 +10,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 2,
+    slug: "spade-the-platform-behind-the-product",
+    title: "Spade, The Platform Behind the Product",
+    header:
+      "An architectural retrospective of the platform I designed, built, and operated as Spade's sole technical founder.",
+    published: "October 2026",
+    readTime: "11 min read",
+    markdownPath:
+      "/blogs/spade-the-platform-behind-the-product/spade-the-platform-behind-the-product.md",
+  },
+  {
     id: 1,
     slug: "the-one-problem-we-couldnt-solve-at-spade",
     title: "The One Problem We Couldn't Solve at Spade",

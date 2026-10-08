@@ -173,6 +173,30 @@ export const MarkdownContent = styled.div`
     border-radius: 4px;
   }
 
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    margin: 0 0 24px;
+    border-collapse: collapse;
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+
+  th,
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: #111827;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    border-bottom-width: 2px;
+  }
+
   code {
     padding: 2px 5px;
     border-radius: 3px;
