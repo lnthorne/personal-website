@@ -96,19 +96,19 @@ flowchart TB
 
 At the application layer, the responsibilities were divided as follows:
 
-| Service     | Ownership                                                                                 |
-| ----------- | ----------------------------------------------------------------------------------------- |
-| **Mercury** | Core marketplace: users, providers, jobs, bids, reviews, referrals, and uploads           |
-| **Pluto**   | Real-time homeowner–provider chat over Socket.IO                                          |
-| **Neptune** | Spade Pages: site onboarding, assets, change requests, and subscription-linked site state |
-| **Saturn**  | Internal operations: vetting, moderation, approvals, and administrative workflows         |
-| **Uranus**  | Billing, subscription state, entitlements, and free-bid metering across payment providers |
-| **Novus**   | AI project-planning agent, including generation workflows and streaming                   |
-| **Jupiter** | Transactional email, suppression, provider feedback, and contact-form processing          |
-| **Venus**   | Push delivery and notification digests                                                    |
-| **Mars**    | SMS delivery                                                                              |
+| Service     | Ownership                                                                                   |
+| ----------- | ------------------------------------------------------------------------------------------- |
+| **Mercury** | Core marketplace: users, providers, jobs, bids, reviews, referrals, and uploads             |
+| **Pluto**   | Real-time homeowner–provider chat over Socket.IO                                            |
+| **Neptune** | Spade Pages: site onboarding, assets, change requests, and subscription-linked site state   |
+| **Saturn**  | Internal operations: vetting, moderation, approvals, and administrative workflows           |
+| **Uranus**  | Billing, subscription state, entitlements, and free-trial metering across payment providers |
+| **Novus**   | AI project-planning agent, including generation workflows and streaming                     |
+| **Jupiter** | Transactional email, suppression, provider feedback, and contact-form processing            |
+| **Venus**   | Push delivery and notification digests                                                      |
+| **Mars**    | SMS delivery                                                                                |
 
-The services weren't intended to be symmetrical. Mercury was a substantial domain service. Mars was comparatively narrow. A service boundary was useful when it clarified ownership or isolated a capability—not because every service needed a similar amount of code.
+The services weren't intended to be symmetrical. Mercury was a substantial domain service. Mars was comparatively narrow. A service boundary was useful when it clarified ownership or isolated a capability, not because every service needed a similar amount of code.
 
 ## Communication between services
 
@@ -120,7 +120,7 @@ The HTTP clients implemented bounded concurrency, circuit breakers, retries with
 
 For work that didn't need to complete in the request path, services published domain events to Kafka. Events were grouped by domains such as `JOB`, `AUTH`, `USER`, `MESSAGE`, `ADMIN`, `BILLING`, `GENERATION`, and `EMAIL`. Consumers used separate consumer groups, so multiple capabilities could independently react to the same event without the producer being coupled to their implementation.
 
-This was particularly valuable for communication and other secondary effects. The marketplace could emit a business event without carrying SendGrid, Firebase Cloud Messaging, or Twilio dependencies in its request path. Adding another reaction generally meant adding or updating a consumer, not extending an existing chain of synchronous calls.
+This was particularly valuable for communication and other secondary effects. The marketplace could emit a business event without carrying SendGrid, Cloud Messaging, or Twilio dependencies in its request path. Adding another reaction generally meant adding or updating a consumer, not extending an existing chain of synchronous calls.
 
 We also kept Kafka's role intentionally narrow. It was an **event bus, not our system of record**. Production used a single-node broker, short retention, and best-effort event publication after database writes. A database commit could succeed even if publishing failed. That was acceptable for the notification-oriented workloads we were handling, but it was not a durable delivery guarantee. If events had become essential to maintaining business state across services, I would have revisited that design—starting with an outbox and a stronger durability model.
 
@@ -140,9 +140,9 @@ Pluto was the notable exception to the PostgreSQL model. Chat was built around F
 
 All application services ran on **DigitalOcean Kubernetes**. I used Kubernetes because I wanted one consistent operational model for the platform, with independent deployments and a predictable way to add services as we expanded into new products.
 
-The initial setup took work: deployment manifests, cluster networking, TLS, ingress routing, secrets, health checks, and node autoscaling. After that, though, Kubernetes was remarkably uneventful. DigitalOcean did a great job operating the managed cluster, and once the cluster and autoscaling were configured, I rarely thought about the underlying infrastructure.
+The initial setup took work: deployment manifests, cluster networking, TLS, ingress routing, secrets, health checks, and node autoscaling. After that though, Kubernetes was remarkably uneventful. DigitalOcean did a great job operating the managed cluster, and once the cluster and autoscaling were configured, I rarely thought about the underlying infrastructure.
 
-Adding a service was straightforward. I'd add the Deployment and Service manifests, configure its environment, and—if it needed public routes—update the **Gateway API** configuration. We used Cilium Gateway with explicit `HTTPRoute` definitions, which also meant webhook-facing services exposed only the paths they needed.
+Adding a service was straightforward. I'd add the Deployment and Service manifests, configure its environment, and if it needed public routes, update the **Gateway API** configuration. We used Cilium Gateway with explicit `HTTPRoute` definitions, which also meant webhook-facing services exposed only the paths they needed.
 
 GitHub Actions handled delivery. Each service had its own workflow: build a container image, push it to DigitalOcean's registry, and update the Kubernetes workload using an image pinned to the commit SHA. Staging branches deployed separately. Deploying or rolling back one service didn't require redeploying the entire backend.
 
