@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 import { getBlogPostBySlug } from "./blogData";
 import {
 	BlogPage,
@@ -14,6 +15,7 @@ import {
 	StatusMessage,
 } from "./styles";
 import VideoModal from "./VideoModal";
+import MermaidDiagram from "./MermaidDiagram";
 
 interface BlogDetailProps {
 	slug?: string;
@@ -102,8 +104,28 @@ const BlogDetail = ({ slug }: BlogDetailProps) => {
 				{status === "ready" && (
 					<MarkdownContent>
 						<ReactMarkdown
+							remarkPlugins={[remarkGfm]}
 							rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
 							components={{
+								// Render ```mermaid code blocks as diagrams instead of code.
+								pre: ({ node, children, ...props }) => {
+									const code = node?.children[0];
+									const className = code?.type === "element" ? code.properties?.className : undefined;
+
+									if (
+										code?.type === "element" &&
+										code.tagName === "code" &&
+										Array.isArray(className) &&
+										className.includes("language-mermaid")
+									) {
+										const chart = code.children
+											.map((child) => (child.type === "text" ? child.value : ""))
+											.join("");
+										return <MermaidDiagram chart={chart} />;
+									}
+
+									return <pre {...props}>{children}</pre>;
+								},
 								a: ({ node, children, ...props }) => (
 									<a {...props} target="_blank" rel="noopener noreferrer">
 										{children}

@@ -33,7 +33,7 @@ const Blogs: React.FC = () => {
 				))}
 			</BlogList>
 			<Instruction>
-				Type "open [number]" to read a post. Example: "open 1" to read "{blogPosts[0].title}".
+				Type "open [number]" to read a post. Example: "open {blogPosts[0].id}" to read "{blogPosts[0].title}".
 			</Instruction>
 		</BlogsContainer>
 	);
