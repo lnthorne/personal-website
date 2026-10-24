@@ -186,7 +186,7 @@ That removed much of the _organizational_ overhead often associated with service
 
 It also meant a lot of architectural context lived with one person. That was efficient while I owned the whole platform, but it wouldn't have been a sustainable substitute for documentation, contracts, and clearer organizational ownership as a team grew.
 
-If I were designing the system again, I'd still favour coarse-grained domains over splitting functionality into dozens of tiny services. I'd also use managed Kubernetes again in a similar setting; after the setup, DigitalOcean and our deployment automation made it largely hands-off. Some of the operational simplifications, single-node Kafka, single-instance Redis, one replica per service, and best-effort event publication, would need to be revisited if the platform's availability or durability requirements increased.
+If I were designing the system again, I'd still favour coarse-grained domains over splitting functionality into dozens of tiny services. I'd also use managed Kubernetes again in a similar setting; after the setup, DigitalOcean and our deployment automation made it largely hands-off. Some of the operational simplifications, single-node Kafka, single-instance Redis, and best-effort event publication, would need to be revisited if the platform's availability or durability requirements increased.
 
 Spade ultimately didn't become the business we set out to build. But the platform did reach the point where the original architectural premise could be tested: we operated the marketplace, added another product, reused shared capabilities, and evolved the system without having to rebuild its foundation each time.
 
